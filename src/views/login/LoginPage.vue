@@ -4,7 +4,7 @@ import { User, Lock } from '@element-plus/icons-vue'
 import { ref, watch } from 'vue'
 import { useUserStore } from '@/stores/index.js'
 import { useRouter } from 'vue-router'
-const isRegister = ref(true)
+const isRegister = ref(false)
 const form = ref()
 // 注册
 const formModel = ref({

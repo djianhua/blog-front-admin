@@ -80,13 +80,13 @@ const handleCommand = async (key) => {
       <el-header>
         <div>
           黑马程序员：<strong>{{
-            userStore.user.username || userStore.user.username
+            userStore.user.data.username || userStore.user.data.username
           }}</strong>
         </div>
         <el-dropdown placement="bottom-end" @command="handleCommand">
           <!-- 展示给用户，默认看到的 -->
           <span class="el-dropdown__box">
-            <el-avatar :src="userStore.user.user_pic || avatar" />
+            <el-avatar :src="userStore.user.data.user_pic || avatar" />
             <el-icon><CaretBottom /></el-icon>
           </span>
           <!-- 折叠下拉部分 -->
