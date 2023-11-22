@@ -1,7 +1,10 @@
 <script setup>
 import { ref } from 'vue'
 import { Edit, Delete } from '@element-plus/icons-vue'
-import { articleGetChannelsService } from '../../api/article'
+import {
+  articleGetChannelsService,
+  articleDelChannelService
+} from '../../api/article'
 import ChannelEdit from '../../components/ChannelEdit.vue'
 const channelList = ref([])
 const loading = ref(false)
@@ -14,6 +17,17 @@ const getChannelList = async () => {
   loading.value = false
 }
 getChannelList()
+
+const onDeleteChannel = async (row) => {
+  await ElMessageBox.confirm('你确认要删除该分类吗', '温馨提示', {
+    type: 'waring',
+    confirmButtonText: '确认',
+    cancelButtonText: '取消'
+  })
+  await articleDelChannelService(row.id)
+  ElMessage.success('删除成功')
+  getChannelList()
+}
 const onEditChannel = (row) => {
   dialog.value.open(row)
 }
@@ -50,7 +64,7 @@ const onSuccess = () => {
             type="danger"
             circle
             :icon="Delete"
-            @click="onDeleteChannel(row, $index)"
+            @click="onDeleteChannel(row)"
           ></el-button>
         </template>
       </el-table-column>
